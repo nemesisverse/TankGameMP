@@ -65,7 +65,7 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner) { return; }
 
         // Set the velocity of the Rigidbody2D to move the player forward/backward
-        rb.velocity = (Vector2)bodyTransform.up * previousMovementInput.y * movementSpeed;
+        rb.linearVelocity = (Vector2)bodyTransform.up * previousMovementInput.y * movementSpeed;
     }
 
     // Handles movement input from the player

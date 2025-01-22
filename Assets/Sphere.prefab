@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8821292418361344850}
   - component: {fileID: 5476958552291836274}
   - component: {fileID: 427529886243256560}
+  - component: {fileID: 8513504711439366494}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1474666012
+  GlobalObjectIdHash: 2696017379
   InScenePlacedSourceGlobalObjectIdHash: 927758848
   DeferredDespawnTick: 0
   Ownership: 1
@@ -123,7 +124,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: bf4c43c20baecc949ae5e239e9ff5adb, type: 2}
   bodyTransform: {fileID: 7549787415529518101}
   rb: {fileID: 427529886243256560}
-  movementSpeed: 4
+  movementSpeed: 5
   turningRate: 270
 --- !u!50 &427529886243256560
 Rigidbody2D:
@@ -152,6 +153,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8513504711439366494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684486636336453881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e79403224aab24478640d6ebc0b5eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  inputReader: {fileID: 11400000, guid: bf4c43c20baecc949ae5e239e9ff5adb, type: 2}
+  turretTransform: {fileID: 7260760196684152659}
 --- !u!1 &3664356388094608696
 GameObject:
   m_ObjectHideFlags: 0

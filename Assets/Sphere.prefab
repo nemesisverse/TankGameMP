@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5476958552291836274}
   - component: {fileID: 427529886243256560}
   - component: {fileID: 8513504711439366494}
+  - component: {fileID: 1943695323313913549}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -168,6 +169,23 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   inputReader: {fileID: 11400000, guid: bf4c43c20baecc949ae5e239e9ff5adb, type: 2}
   turretTransform: {fileID: 7260760196684152659}
+--- !u!114 &1943695323313913549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684486636336453881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f4264b495de934ab9b942d61cb5be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: bf4c43c20baecc949ae5e239e9ff5adb, type: 2}
+  projectileSpawnPoint: {fileID: 359629713889372469}
+  serverProjectilePrefab: {fileID: 7489043524491295092, guid: 8c7246bee2458be468864ea0ae7a5cb9, type: 3}
+  clientProjectilePrefab: {fileID: 1982562589011737432, guid: 44d84ec38e9f88c42a80176864238a8e, type: 3}
+  projectileSpeed: 4
 --- !u!1 &3664356388094608696
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +215,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 359629713889372469}
   m_Father: {fileID: 7260760196684152659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7225660823044649940
@@ -324,6 +343,37 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!1 &5663291862392399782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 359629713889372469}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &359629713889372469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663291862392399782}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6357658159074215741}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8546642851826265005
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class ProjectileLaunceher : NetworkBehaviour
 
     }
 
+
     public void HandlePrimaryFire(bool shouldFire)
     {
         this.shouldFire = shouldFire;
@@ -36,6 +37,8 @@ public class ProjectileLaunceher : NetworkBehaviour
     {
         if(!IsOwner) { return; }
         if (!shouldFire) {  return; }
+
+        PrimaryFireServerRpc(projectileSpawnPoint.position, projectileSpawnPoint.up);
         SpawnDummyProjectile(projectileSpawnPoint.position, projectileSpawnPoint.up);
     }
 
@@ -45,8 +48,17 @@ public class ProjectileLaunceher : NetworkBehaviour
     {
         GameObject projectileInstance = Instantiate(clientProjectilePrefab, spawnPos, Quaternion.identity);
         projectileInstance.transform.up = direction;
-    }
 
+       
+        SpawnDummyProjectileClientRPC(spawnPos , direction);
+    }
+    [ClientRpc]
+    private void SpawnDummyProjectileClientRPC(Vector3 spawnPos, Vector3 direction)
+    {
+        if (IsOwner) { return; }
+
+        SpawnDummyProjectile(spawnPos , direction);
+    }
     private void SpawnDummyProjectile(Vector3 spawnPos, Vector3 direction)
     {
        GameObject projectileInstance =  Instantiate(clientProjectilePrefab  , spawnPos , Quaternion.identity);

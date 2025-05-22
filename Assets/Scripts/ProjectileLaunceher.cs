@@ -9,10 +9,13 @@ public class ProjectileLaunceher : NetworkBehaviour
     [SerializeField] private Transform projectileSpawnPoint;
     [SerializeField] private GameObject serverProjectilePrefab;
     [SerializeField] private GameObject clientProjectilePrefab;
+    [SerializeField] private GameObject muzzleFlash;
+    [SerializeField] private Collider2D playerCollider;
 
     [Header("Settings")]
     [SerializeField] private float projectileSpeed;
-
+    [SerializeField] private float fireRate;
+    [SerializeField] private float muzzleFlashDuration;
     public bool shouldFire;
     public override void OnNetworkSpawn()
     {

@@ -17,6 +17,9 @@ public class ProjectileLaunceher : NetworkBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float muzzleFlashDuration;
     public bool shouldFire;
+
+    private float previousFireTime;
+    private float muzzleFlashTimer;
     public override void OnNetworkSpawn()
     {
         if(!IsOwner) { return; }
@@ -38,6 +41,14 @@ public class ProjectileLaunceher : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(muzzleFlashTimer>0f)
+        {
+            muzzleFlashTimer -= Time.deltaTime;
+            if(muzzleFlashTimer <= 0f)
+            {
+                muzzleFlash.SetActive(false);
+            }
+        }
         if(!IsOwner) { return; }
         if (!shouldFire) {  return; }
 
@@ -52,7 +63,12 @@ public class ProjectileLaunceher : NetworkBehaviour
         GameObject projectileInstance = Instantiate(clientProjectilePrefab, spawnPos, Quaternion.identity);
         projectileInstance.transform.up = direction;
 
-       
+        Physics2D.IgnoreCollision(playerCollider , projectileInstance.GetComponent<Collider2D>());
+        if (projectileInstance.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+        {
+            rb.velocity = rb.transform.up * projectileSpeed;
+        }
+
         SpawnDummyProjectileClientRPC(spawnPos , direction);
     }
     [ClientRpc]
@@ -64,7 +80,19 @@ public class ProjectileLaunceher : NetworkBehaviour
     }
     private void SpawnDummyProjectile(Vector3 spawnPos, Vector3 direction)
     {
+        muzzleFlash.SetActive(true);
+        muzzleFlashTimer = muzzleFlashDuration;
+
        GameObject projectileInstance =  Instantiate(clientProjectilePrefab  , spawnPos , Quaternion.identity);
         projectileInstance.transform.up = direction;
+
+        Physics2D.IgnoreCollision(playerCollider, projectileInstance.GetComponent<Collider2D>());
+
+        if(projectileInstance.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+        {
+            rb.velocity = rb.transform.up * projectileSpeed;
+        }
+
+
     }
 }

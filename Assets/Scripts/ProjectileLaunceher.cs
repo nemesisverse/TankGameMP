@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -51,9 +52,14 @@ public class ProjectileLaunceher : NetworkBehaviour
         }
         if(!IsOwner) { return; }
         if (!shouldFire) {  return; }
-
+        if (Time.time < (1 / fireRate) + previousFireTime)
+        {
+            return;
+        }
         PrimaryFireServerRpc(projectileSpawnPoint.position, projectileSpawnPoint.up);
         SpawnDummyProjectile(projectileSpawnPoint.position, projectileSpawnPoint.up);
+
+        previousFireTime = Time.time;
     }
 
     [ServerRpc]
